@@ -88,9 +88,26 @@ the transactions go through these transaction processors for their unique requir
 - [PoET] (https://sawtooth.hyperledger.org/docs/core/releases/latest/architecture/poet.html)
 - [PBFT](https://sawtooth.hyperledger.org/docs/pbft/releases/latest/introduction-to-sawtooth-pbft.html)
 
+- [Papertrail articles about consensus](https://www.the-paper-trail.org/tags/consensus/)
 
 - Dynamic consensus.
 - read about consensus [here](https://101blockchains.com/consensus-algorithms-blockchain/)
+
+### PBFT
+
+uses a round robin simple scheduler.
+
+
+
+
+
+## Metrics
+
+Sawtooth uses InfluxDb to store metrics data. That data gets fed then to grafana. An alternative technology to that would be Prometheus. It uses a pull system instead of a push and is maybe more performant.  
+
+
+
+
 
 
 
