@@ -97,18 +97,19 @@ the transactions go through these transaction processors for their unique requir
 
 uses a round robin simple scheduler.
 
-
-
-
-
 ## Metrics
 
 Sawtooth uses InfluxDb to store metrics data. That data gets fed then to grafana. An alternative technology to that would be Prometheus. It uses a pull system instead of a push and is maybe more performant.  
 
 
 
+## note about transactions payloads
 
+```
 
+For example, the ‘inc’ and ‘dec’ transactions must list the initial ‘set’ transaction for the entry. If an ‘inc’ or ‘dec’ transaction is ordered before the corresponding ‘set’ transaction (without listing the ‘set’ transaction as a dependency), they will be considered invalid (because Name will not exist when they are processed).
+
+```
 
 
 
