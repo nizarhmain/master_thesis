@@ -10,15 +10,7 @@
 - [Certificate Transparency google](https://www.certificate-transparency.org/)
 - [Namecoin - Decentralized DNS](https://www.namecoin.org/)
 - [Zero knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
-- [Np complete](https://en.wikipedia.org/wiki/NP-completeness)
-- [Decision problem](https://en.wikipedia.org/wiki/Decision_problem)
 - [bitcoin armory](https://www.bitcoinarmory.com/)
-- [merkle tree](https://en.wikipedia.org/wiki/Merkle_tree)
-- [merkle trees in eth](https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/)
-- [merkle patricia tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
-- [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)
-
-
 
 # notes to myself
 
@@ -34,7 +26,40 @@
 - Secure remote password has a zero-knowledge
 - Find a [hamiltonian](https://en.wikipedia.org/wiki/Hamiltonian_path) for a large graph is considered infeasible and is NP complete.
 
+
+## Data structures and algorithms
+
+
+- [Np complete](https://en.wikipedia.org/wiki/NP-completeness)
+- [Decision problem](https://en.wikipedia.org/wiki/Decision_problem)
+- [merkle tree](https://en.wikipedia.org/wiki/Merkle_tree)
+- [merkle trees in eth](https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/)
+- [merkle patricia tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
+- [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)
+
+
+
+## Probability notes
+
+- this happens when there is an attack [Gambler ruin](https://en.wikipedia.org/wiki/Gambler%27s_ruin)
+- [Gambler's falacy](https://en.wikipedia.org/wiki/Gambler%27s_fallacy)
+- [Random walks](https://en.wikipedia.org/wiki/Random_walk)
+
+
+
+
 ## About sawtooth
+
+
+### differences between fabric and sawtooth
+
+- fabric only supports permissioned
+- fabric has fine-grained governance over participation
+
+- sawtooth supports permissioned and permissionless blockchain network
+- sawtooth defines roles and permissions which make it more flexible than fabric and auth is handled by validators in the network.
+
+
 
 - ledger
 - distributed
@@ -92,6 +117,10 @@ the transactions go through these transaction processors for their unique requir
 
 - Dynamic consensus.
 - read about consensus [here](https://101blockchains.com/consensus-algorithms-blockchain/)
+
+
+
+- Poet can be run with [SGX](https://en.wikipedia.org/wiki/Software_Guard_Extensions)
 
 ### PBFT
 
