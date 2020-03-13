@@ -215,6 +215,11 @@ Initial outputs
 
 ```
 
+If you go to the scripts folder you'll find a simple script that shows how to decoded a cbor payload using the cbor python package.  
+
+now if you interact directly with the sawtooth tool you only get the cbor back but when requesting from the REST API they first encoded in base64 encoding then you can decode it to cbor format
+
+![docker compose output](docs/base64_cbor.png)
 
 
 
