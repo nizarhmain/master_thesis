@@ -36,7 +36,7 @@
 - [merkle trees in eth](https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/)
 - [merkle patricia tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
 - [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)
-- [merkle radix] (https://medium.com/codechain/modified-merkle-patricia-trie-how-ethereum-saves-a-state-e6d7555078dd)
+- [merkle radix](https://medium.com/codechain/modified-merkle-patricia-trie-how-ethereum-saves-a-state-e6d7555078dd)
 
 
 
@@ -112,7 +112,7 @@ the transactions go through these transaction processors for their unique requir
 
 - [Original PBFT](https://www.usenix.org/legacy/events/osdi99/full_papers/castro/castro_html/castro.html)
 
-- [PoET] (https://sawtooth.hyperledger.org/docs/core/releases/latest/architecture/poet.html)
+- [PoET](https://sawtooth.hyperledger.org/docs/core/releases/latest/architecture/poet.html)
 - [PBFT](https://sawtooth.hyperledger.org/docs/pbft/releases/latest/introduction-to-sawtooth-pbft.html)
 
 - [Papertrail articles about consensus](https://www.the-paper-trail.org/tags/consensus/)
@@ -148,6 +148,78 @@ For example, the ‘inc’ and ‘dec’ transactions must list the initial ‘s
 ![scc-core](docs/scc-core.png)
 ![scc-seth](docs/scc-seth.png)
 ![scc-pbft](docs/scc-pbft.png)
+
+
+## Starting a single node environment
+
+
+
+Docker containers overview
+
+```
+CONTAINER ID        IMAGE                                            COMMAND                  CREATED             STATUS              PORTS                              NAMES
+7aff0b07f31c        hyperledger/sawtooth-shell:chime                 "bash -c 'sawtooth k…"   12 minutes ago      Up 12 minutes       4004/tcp, 8008/tcp                 sawtooth-shell-default
+46daf836f0b1        hyperledger/sawtooth-devmode-engine-rust:chime   "devmode-engine-rust…"   12 minutes ago      Up 12 minutes                                          sawtooth-devmode-engine-rust-default
+418eb0e0b694        hyperledger/sawtooth-intkey-tp-python:chime      "intkey-tp-python -v…"   12 minutes ago      Up 12 minutes       4004/tcp                           sawtooth-intkey-tp-python-default
+33756075952e        hyperledger/sawtooth-settings-tp:chime           "settings-tp -vv -C …"   12 minutes ago      Up 12 minutes       4004/tcp                           sawtooth-settings-tp-default
+a79044b9b475        hyperledger/sawtooth-rest-api:chime              "sawtooth-rest-api -…"   12 minutes ago      Up 12 minutes       4004/tcp, 0.0.0.0:8008->8008/tcp   sawtooth-rest-api-default
+1f540d690033        hyperledger/sawtooth-xo-tp-python:chime          "xo-tp-python -vv -C…"   12 minutes ago      Up 12 minutes       4004/tcp                           sawtooth-xo-tp-python-default
+32bd01887eee        hyperledger/sawtooth-validator:chime             "bash -c 'sawadm key…"   12 minutes ago      Up 12 minutes       0.0.0.0:4004->4004/tcp             sawtooth-validator-default
+
+``` 
+
+Initial outputs
+
+![docker compose output](docs/scc-initial_output.png)
+
+
+```
+
+{
+   "header":{
+      "signer_public_key":"032cc920a88536a2e4a011f8aa1bbd65f1dd6136cf252539817bf6af9104835239",
+      "transaction_ids":[
+         "07d274ee533882af479bb4fe751e35c07250f3c4a2f840dda4d35e5173621e7e0819b7b418f8b6a3ddd27a62d33d6cbff0a25ece01e61a75ad33d73713674bf4"
+      ]
+   },
+   "header_signature":"4663f9969f8ffca7671f3614aac63a2121c7167ef79545dd8db2b8a35060c02b6339da23c19187c5adfa1c68f51b5b7a2c288d12f2bf44754b4e3e19ef769f8a",
+   "trace":false,
+   "transactions":[
+      {
+         "header":{
+            "batcher_public_key":"032cc920a88536a2e4a011f8aa1bbd65f1dd6136cf252539817bf6af9104835239",
+            "dependencies":[
+
+            ],
+            "family_name":"sawtooth_settings",
+            "family_version":"1.0",
+            "inputs":[
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c1c0cbf0fbcaf64c0b",
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c12840f169a04216b7",
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c1918142591ba4e8a7",
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c12840f169a04216b7"
+            ],
+            "nonce":"",
+            "outputs":[
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c1c0cbf0fbcaf64c0b",
+               "000000a87cb5eafdcca6a8cde0fb0dec1400c5ab274474a6aa82c12840f169a04216b7"
+            ],
+            "payload_sha512":"67e831a4896b7200c23df514393cfa7d3c5294328cd4717561d7bb8e0e70605310602326e2028be20f36c39e034839eefdd2abe18e9a78f6979753afadddabf6",
+            "signer_public_key":"032cc920a88536a2e4a011f8aa1bbd65f1dd6136cf252539817bf6af9104835239"
+         },
+         "header_signature":"07d274ee533882af479bb4fe751e35c07250f3c4a2f840dda4d35e5173621e7e0819b7b418f8b6a3ddd27a62d33d6cbff0a25ece01e61a75ad33d73713674bf4",
+         "payload":"CAESfwomc2F3dG9vdGguc2V0dGluZ3Mudm90ZS5hdXRob3JpemVkX2tleXMSQjAzMmNjOTIwYTg4NTM2YTJlNGEwMTFmOGFhMWJiZDY1ZjFkZDYxMzZjZjI1MjUzOTgxN2JmNmFmOTEwNDgzNTIzORoRMHhmM2RmOTI3NmM3YjcwYjc="
+      }
+   ]
+}
+
+```
+
+
+
+
+
+
 
 
 
