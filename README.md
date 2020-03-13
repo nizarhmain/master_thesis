@@ -2,6 +2,12 @@
 
 # read this
 
+potential project
+
+write a framework that tests the transaction processors
+
+
+
 - [Certcoin](https://courses.csail.mit.edu/6.857/2014/files/19-fromknecht-velicann-yakoubov-certcoin.pdf) 
 - [Decentralized PKI](https://medium.com/hackernoon/decentralized-public-key-infrastructure-dpki-what-is-it-and-why-does-it-matter-babee9d88579)
 
@@ -73,7 +79,29 @@ smart contracts virtual machine or a Business logic that is native to the proble
 
 - core layer
 
+
 ## Transactions
+
+
+### Batches
+
+contain multiple transactions. (in bitcoin transactions are atomic).
+the header is the thing that gets signed
+
+
+- validator makes sure the hash : payload_sha512 is the same as the payload. to make sure that no one changed the contents of the payload.
+- public keys of both signer of batch and signer of transaction, prevents different transaction in different batch.
+- family_name and family_version: routing information, to which transaction processors should I send this tx.
+- inputs and outputs: addresses of state that we will be writing to (client needs to understand the same logic as tp. they kind of need to agree on how to calculate those addresses in that way the validator will do a better job in parallelizing the job).
+- dependencies: other transactions that we need to wait on, not in the same batch
+
+- the client encodes the data in a payload. the tp needs to decoded and it will encode some stuff in state
+- the client needs to decode the data in state.
+- 70 hex chars to  play with , first 6 name space of transaction family. 64 whatever you want ( a hash of a UUID ).
+- with the merkle tree you can fetch anything under a prefix. anything that matches the namespace prefix. (you can create subname spaces).
+
+
+
 
 the transactions go through these transaction processors for their unique requirements.
 
@@ -102,6 +130,21 @@ the transactions go through these transaction processors for their unique requir
 
 ## Smart contracts
 
+
+The transaction process kind of acts as a smart contract
+
+you can have both TPs + smart contracts.
+easy logic = tp 
+unsusual logic = smart contract
+
+
+Supply chain : talks directly to validator
+Local database: redundancy
+
+client = create transactions and batches and submit them. anything really. mobile cli web whatever either through the built-in rest or like supply chain approach
+
+
+
 - [Seth](https://zeromq.org/socket-api/) allows to deploy EVM smart contracts onto Sawtooth
 - [Sabre](https://sawtooth.hyperledger.org/docs/sabre/releases/latest/sabre_transaction_family.html)
 
@@ -119,10 +162,19 @@ the transactions go through these transaction processors for their unique requir
 
 - Dynamic consensus.
 - read about consensus [here](https://101blockchains.com/consensus-algorithms-blockchain/)
-
-
-
 - Poet can be run with [SGX](https://en.wikipedia.org/wiki/Software_Guard_Extensions)
+
+
+### Difference between Poet SGX and normal Poet
+
+- with Poet SGX, you get hardware assistance which means you can achieve BFT that POW gives you if you have Intel chips
+- normal Poet, you ensure Crash fault tolerance not Byzantine fault tolerance (all data is correct, can't ensure bad actors).
+
+
+
+
+
+
 
 ### PBFT
 
@@ -141,6 +193,14 @@ Sawtooth uses InfluxDb to store metrics data. That data gets fed then to grafana
 For example, the ‘inc’ and ‘dec’ transactions must list the initial ‘set’ transaction for the entry. If an ‘inc’ or ‘dec’ transaction is ordered before the corresponding ‘set’ transaction (without listing the ‘set’ transaction as a dependency), they will be considered invalid (because Name will not exist when they are processed).
 
 ```
+
+
+
+# Sample applications
+
+- Supply chain (tracking telemetry, goods logistics)
+- Marketplace (asset exchange)
+
 
 
 # Code analysis
