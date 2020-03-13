@@ -36,6 +36,7 @@
 - [merkle trees in eth](https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/)
 - [merkle patricia tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree)
 - [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter)
+- [merkle radix] (https://medium.com/codechain/modified-merkle-patricia-trie-how-ethereum-saves-a-state-e6d7555078dd)
 
 
 
@@ -88,7 +89,8 @@ the transactions go through these transaction processors for their unique requir
 - for serializing, look into [protocol buffers](https://developers.google.com/protocol-buffers)
 - secp256k1 curve and ECDSA key using that curve, read into that.
 - journal system, blockPublisher and chainController for block validation and fork resolution.
-
+- use the original header bytes for verification. don't deserialize and reserialize, any deviation can break things. stick to reading the original header bytes and verify them before pushing them again
+- normalization [Bitcoin Transaction Malleability](https://eklitzke.org/bitcoin-transaction-malleability)
 
 
 
@@ -141,7 +143,11 @@ For example, the ‘inc’ and ‘dec’ transactions must list the initial ‘s
 ```
 
 
+# Code analysis
 
+[scc-core](docs/scc-core.png)
+[scc-seth](docs/scc-seth.png)
+[scc-pbft](docs/scc-pbft.png)
 
 
 
