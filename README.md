@@ -145,9 +145,9 @@ For example, the ‘inc’ and ‘dec’ transactions must list the initial ‘s
 
 # Code analysis
 
-[scc-core](docs/scc-core.png)
-[scc-seth](docs/scc-seth.png)
-[scc-pbft](docs/scc-pbft.png)
+![scc-core](docs/scc-core.png)
+![scc-seth](docs/scc-seth.png)
+![scc-pbft](docs/scc-pbft.png)
 
 
 
