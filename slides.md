@@ -18,13 +18,22 @@ marp: true
 ![bg center h:600](docs/arch.png)
 
 
---- 
+
+---
+
+# What has been already done
+
+- Performance modeling and analysis
+- PBFT Performance bottleneck in some cases
+- IoT and Embedded
+- Performance of PoET 
+
+
+---
 
 # Clients:
 
-write your own approach.
-favors customization over pre-existing frameworks.
-
+"write your own" approach.
 Java, go, python, javascript, rust, java.
 
 https://github.com/hyperledger/sawtooth-explorer
@@ -78,18 +87,40 @@ Maybe write a framework that would test both, smart contracts and TPs. (investig
 ---
 
 
-## main differences between fabric and sawtooth
 
-| Fabric        |  Sawtooth          
-| ------------- |:-------------:|
-| permissioned-only      | permissioned and permissionless |
-| fine-grained governance      | roles and permissions more flexible      |
+# Smart contracts
+
+Sawtooth seth: smart contracts written in solidity
+
+![center h:400](docs/burrow.png)
+
+
+---
+
+# Smart Contracts
+
+Also gather some information about Tendermint and what problem it's trying to solve.
+
+Maybe have something around seth. build some sort of tool that. Try to find a problem where this would fit.
+
+Fx: Integrating old software that would run on Ethereum's blockchain and how easy would it be for an enterprise to migrate their smart-contract infrastructure on sawtooth using Seth.
 
 
 ---
 
 
+# Privacy and Confidentiality 
 
-
+- UTXO (off-chain stored transactions) could be an interesting topic to look into
+- Separation of Concerns vs Encrypted Data (Intel SGX)
+- Policies have a "one-to-many" Roles relationship
+- See if there are any other interesting privacy and confidentiality approaches that could be interesting
 
 ---
+
+
+
+# Potential use cases of sawtooth and applications 
+
+- Fatture elettroniche: tracing their state on top of sawtooth (with real financial data)
+- storing medical procedures on top of it (also real data)
