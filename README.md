@@ -4,7 +4,7 @@
 
 potential project
 
-write a framework that tests the transaction processors
+aa write a framework that tests the transaction processors
 
 
 
@@ -150,6 +150,8 @@ client = create transactions and batches and submit them. anything really. mobil
 
 
 ## Consensus
+
+- [General consensus stuff](https://www.hyperledger.org/blog/2018/11/09/hyperledger-sawtooth-blockchain-security-part-one)
 
 - [Raft](https://sawtooth.hyperledger.org/docs/raft/nightly/master/introduction.html)
 
