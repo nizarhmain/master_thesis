@@ -2,13 +2,13 @@
 marp: true
 ---
 
-![w:220](https://www.unicam.it/sites/default/files/logoUNICAM-full.jpg)
+![w:220](docs/unicam.jpg)
 
 ## Brainstorming report 
 
-![bg right h:100](https://miro.medium.com/max/7326/1*NWdPPj6NvicKqZUq9MMlmA.png)
+![bg right h:100](docs/hyperledger.png)
 
-![bg right w:220](https://www.hyperledger.org/wp-content/uploads/2018/01/Hyperledger_Sawtooth_Logo_Color.png)
+![bg right w:220](docs/sawtooth.png)
 
 
 
