@@ -166,7 +166,6 @@ client = create transactions and batches and submit them. anything really. mobil
 - read about consensus [here](https://101blockchains.com/consensus-algorithms-blockchain/)
 - Poet can be run with [SGX](https://en.wikipedia.org/wiki/Software_Guard_Extensions)
 
-
 ### Difference between Poet SGX and normal Poet
 
 - with Poet SGX, you get hardware assistance which means you can achieve BFT that POW gives you if you have Intel chips
@@ -176,6 +175,19 @@ client = create transactions and batches and submit them. anything really. mobil
 
 
 ### PBFT
+
+*The algorithm does not rely on synchrony to provide
+safety. Therefore, it must rely on synchrony to provide
+liveness; otherwise it could be used to implement
+consensus in an asynchronous system, which is not
+possible*
+
+
+*It is not feasible to offerfault-tolerant privacy
+in the general case because service operations may
+perform arbitrary computations using their arguments and
+the service state; replicas need this information in the
+clear to execute such operations efficiently*
 
 uses a round robin simple scheduler.
 
@@ -200,6 +212,16 @@ Hyperledger fabric uses a channel method as well as R3 Corda's and JPMorgan Quor
 The key disadvantage of this model is that
 it creates a number of ‘sub-chains’ and transferring assets between these chains adds
 significant complexity or reduces confidentiality
+
+# Offchain topics
+
+- [eth alliance off chain trusted compute specs](https://entethalliance.github.io/trusted-computing/spec.html#conformance)
+
+
+
+
+
+
 
 
 UTXO are unspent transaction outputs. 
