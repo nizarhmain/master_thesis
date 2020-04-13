@@ -38,6 +38,14 @@ services:
       - validator
     entrypoint: xo-tp-python -vv -C tcp://validator:4004
 
+  smallbank-tp-rust:
+    image: hyperledger/sawtooth-smallbank-tp-rust
+    container_name: sawtooth-smallbank-tp-rust-default
+    depends_on:
+      - validator
+    entrypoint: smallbank-tp-rust -v -C tcp://validator:4004
+
+
   validator:
     image: hyperledger/sawtooth-validator:chime
     container_name: sawtooth-validator-default

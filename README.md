@@ -318,6 +318,31 @@ now if you interact directly with the sawtooth tool you only get the cbor back b
 ![docker compose output](docs/base64_cbor.png)
 
 
+# Small bank 
+
+1. run multiple instances of the containers
+2. try to run the smallbank transaction processor in this network and see how it works.
+
+NOTE TO SELF: instead of going to github looking for the Dockerfile directly. go to [hyperledger's dockerhub](https://hub.docker.com/u/hyperledger/)
+
+[Online transanction processing](https://en.wikipedia.org/wiki/Online_transaction_processing). Interesting read this
+
+[HStore website](https://hstore.cs.brown.edu/). They are behind the smallbank-tp. It's mainly used for testing and benchmarking purposes.
+
+so for each Transaction processor, we need to write a client that handles that encoding and serialization and sends it to the REST API.
+
+
+so if we are writing the client we need the PROTO compiler to compile the .proto files so that we can use them to serialize the stuff properly
+
+[Python grpc](https://grpc.io/docs/quickstart/python/). they use different tools to compile their protobuffs. documentation is really weird
+
+
+
+
+
+
+
+
 
 
 
