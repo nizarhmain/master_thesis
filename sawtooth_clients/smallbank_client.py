@@ -3,10 +3,15 @@
 # read the transaction family description and docs and then map that into code.
 # the sawtooth_sdk protobuf libraries make that simple
 
-
-import smallbank_pb2
+from urllib.error import HTTPError
+import urllib.request
+from sawtooth_sdk.protobuf.batch_pb2 import BatchList
+from sawtooth_sdk.protobuf.batch_pb2 import Batch
 
 import cbor
+
+import protosma_pb2
+
 from sawtooth_signing import create_context
 from sawtooth_signing import CryptoFactory
 
@@ -18,6 +23,7 @@ from sawtooth_sdk.protobuf.transaction_pb2 import Transaction
 
 from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader
 
+# print(dir(protosma_pb2.SmallbankTransactionPayload))
 
 
 context = create_context('secp256k1')
@@ -25,45 +31,58 @@ private_key = context.new_random_private_key()
 signer = CryptoFactory(context).new_signer(private_key)
 
 
-
-
-
-
-
-
 def _sha512_small_bank(customer_id):
     return hashlib.sha512('smallbank'.encode('utf-8')).hexdigest()[0:6] + hashlib.sha512(str(customer_id).encode('utf-8')).hexdigest()[-64:]
 
 
-print(private_key)
-
 customer1 = _sha512_small_bank(1)
-customer2 = _sha512_small_bank(2)
 
 print(customer1)
-print(customer2)
 
 # create account for customer 1
 
-createAccountTransactionData = {
-    'customer_id': 1,
-    'customer_name': 'pippo',
-    'initial_savings_balance': 150000,
-    'initial_checking_balance': 200000,
+'''
+message CreateAccountTransactionData {
+        // The CreateAccountTransaction creates an account
+
+        // Customer ID
+        uint32 customer_id = 1;
+
+        // Customer Name
+        string customer_name = 2;
+
+        // Initial Savings Balance (in cents to avoid float)
+        uint32 initial_savings_balance = 3;
+
+        // Initial Checking Balance (in cents to avoid float)
+        uint32 initial_checking_balance = 4;
     }
+'''
 
-payload = {
-    'payload_type': 1,
-    'create_account': cbor.dumps(createAccountTransactionData) 
-}
+# creating new accounts
+small_payload = protosma_pb2.SmallbankTransactionPayload(
+    payload_type=protosma_pb2.SmallbankTransactionPayload.CREATE_ACCOUNT,
+    create_account=protosma_pb2.SmallbankTransactionPayload.CreateAccountTransactionData(
+        customer_id=1,
+        customer_name='eric',
+        initial_savings_balance=2000,
+        initial_checking_balance=1500
+    )
+)
 
-payload_bytes = cbor.dumps(payload)
+payload_bytes = small_payload.SerializeToString()
 
+print(small_payload)
 print(payload_bytes)
+
+# print(payload_bytes)
 
 # create transaction headers
 
 # addresses
+
+
+print([customer1])
 
 txn_header_bytes = TransactionHeader(
     family_name='smallbank',
@@ -80,7 +99,7 @@ txn_header_bytes = TransactionHeader(
     # this transaction to successfully commit.
     # For example,
     # dependencies=['540a6803971d1880ec73a96cb97815a95d374cbad5d865925e5aa0432fcf1931539afe10310c122c5eaae15df61236079abbf4f258889359c4d175516934484a'],
-    dependencies=[],
+    dependencies=[customer1],
     payload_sha512=hashlib.sha512(payload_bytes).hexdigest()
 ).SerializeToString()
 
@@ -90,7 +109,8 @@ txn_header_bytes = TransactionHeader(
 signature = signer.sign(txn_header_bytes)
 
 # two mistakes synthactical mistakes !! on the wiki
-txn = Transaction(header=txn_header_bytes, header_signature=signature, payload=payload_bytes)
+txn = Transaction(header=txn_header_bytes,
+                  header_signature=signature, payload=payload_bytes)
 
 
 txns = [txn]
@@ -104,8 +124,6 @@ batch_header_bytes = BatchHeader(
 # print(signature)
 
 
-from sawtooth_sdk.protobuf.batch_pb2 import Batch
-
 signature = signer.sign(batch_header_bytes)
 
 batch = Batch(
@@ -113,9 +131,6 @@ batch = Batch(
     header_signature=signature,
     transactions=txns
 )
-
-
-from sawtooth_sdk.protobuf.batch_pb2 import BatchList
 
 batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
 
@@ -125,10 +140,6 @@ batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
 
 # send the batches
 
-'''
-
-import urllib.request
-from urllib.error import HTTPError
 
 try:
     request = urllib.request.Request(
@@ -141,7 +152,4 @@ try:
 
 except HTTPError as e:
     response = e.file
-'''
-
-
 
