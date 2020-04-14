@@ -355,12 +355,12 @@ smallbank-workload submit -i smallbank.batches -r 10 --target http://10.0.2.81:8
 # Important
 
 basically the addressing that is in the wiki is actually wrong (suggest a fix maybe later to them. this is super cryptic)
-
 use the addressing schema from this repo instead of the one in the wiki.
 
 
+# After that try to check the wallet repo, and see how different it is
 
-
+[simple wallet](https://github.com/askmish/sawtooth-simplewallet)
 
 
 
