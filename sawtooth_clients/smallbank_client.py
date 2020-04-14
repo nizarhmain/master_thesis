@@ -26,6 +26,10 @@ from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader
 # print(dir(protosma_pb2.SmallbankTransactionPayload))
 
 
+CUSTOMER_ID = 99999
+CUSTOMER_NAME='SPT6JfkNQFECDa3XyH0k'
+
+
 context = create_context('secp256k1')
 private_key = context.new_random_private_key()
 signer = CryptoFactory(context).new_signer(private_key)
@@ -34,16 +38,13 @@ signer = CryptoFactory(context).new_signer(private_key)
 def _sha512_small_bank(customer_id):
 
     firstpart = hashlib.sha512('smallbank'.encode('utf-8')).hexdigest()[0:6]
+    secondpart = hashlib.sha512(str(customer_id).encode('utf-8')).hexdigest()[0:64]
 
-    print(firstpart)
-
-    secondpart = hashlib.sha512('49'.encode('utf-8')).hexdigest()[0:64]
-    print(secondpart)
+    return firstpart + secondpart
 
 
-customer1 = _sha512_small_bank(49)
+CUSTOMER_ADDRESS = _sha512_small_bank(CUSTOMER_ID)
 
-print(customer1)
 
 # create account for customer 1
 
@@ -69,10 +70,10 @@ message CreateAccountTransactionData {
 small_payload = protosma_pb2.SmallbankTransactionPayload(
     payload_type=protosma_pb2.SmallbankTransactionPayload.CREATE_ACCOUNT,
     create_account=protosma_pb2.SmallbankTransactionPayload.CreateAccountTransactionData(
-        customer_id=42,
-        customer_name='eric',
-        initial_savings_balance=2000,
-        initial_checking_balance=1500
+        customer_id=CUSTOMER_ID,
+        customer_name=CUSTOMER_NAME,
+        initial_savings_balance=1000000,
+        initial_checking_balance=1000000
     )
 )
 
@@ -81,6 +82,9 @@ payload_bytes = small_payload.SerializeToString()
 print(small_payload)
 print(payload_bytes)
 
+print(hashlib.sha512(payload_bytes).hexdigest())
+
+
 # print(payload_bytes)
 
 # create transaction headers
@@ -88,13 +92,11 @@ print(payload_bytes)
 # addresses
 
 
-print([customer1])
-
 txn_header_bytes = TransactionHeader(
     family_name='smallbank',
     family_version='1.0',
-    inputs=['332514d7901dac15fda6c4d45a19f8057bde312161d25520c32e96565b96460fc60905'],
-    outputs=['3325143ff98ae73225156b2c6c9ceddbfc16f5453e8fa49fc10e5d96a3885546a46ef4'],
+    inputs=[CUSTOMER_ADDRESS],
+    outputs=[CUSTOMER_ADDRESS],
     signer_public_key=signer.get_public_key().as_hex(),
     # In this example, we're signing the batch with the same private key,
     # but the batch can be signed by another party, in which case, the
@@ -112,11 +114,14 @@ txn_header_bytes = TransactionHeader(
 
 # print(txn_header_bytes)
 
-signature = signer.sign(txn_header_bytes)
+header_signature = signer.sign(txn_header_bytes)
+
+print('public key: ' + signer.get_public_key().as_hex())
+print('signature : ' + header_signature)
 
 # two mistakes synthactical mistakes !! on the wiki
 txn = Transaction(header=txn_header_bytes,
-                  header_signature=signature, payload=payload_bytes)
+                  header_signature=header_signature, payload=payload_bytes)
 
 
 txns = [txn]
@@ -146,7 +151,6 @@ batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
 
 # send the batches
 
-'''
 try:
     request = urllib.request.Request(
         'http://localhost:8008/batches',
@@ -158,5 +162,3 @@ try:
 
 except HTTPError as e:
     response = e.file
-'''
-
