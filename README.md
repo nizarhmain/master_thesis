@@ -338,6 +338,21 @@ so if we are writing the client we need the PROTO compiler to compile the .proto
 
 
 
+# How to do the performance load on the small banking
+
+```
+smallbank-workload playlist create --accounts 1000 -n 100000 -o smallbank.playlist
+
+smallbank-workload playlist process -i smallbank.playlist -k ~/.sawtooth/keys/mykey.priv -o smallbank.txns
+
+smallbank-workload batch -i smallbank.txns -k ~/.sawtooth/keys/mykey.priv --max-batch-size 10 -o smallbank.batches
+
+smallbank-workload submit -i smallbank.batches -r 10 --target http://10.0.2.81:8008
+
+
+```
+
+
 
 
 

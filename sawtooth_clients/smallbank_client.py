@@ -32,10 +32,16 @@ signer = CryptoFactory(context).new_signer(private_key)
 
 
 def _sha512_small_bank(customer_id):
-    return hashlib.sha512('smallbank'.encode('utf-8')).hexdigest()[0:6] + hashlib.sha512(str(customer_id).encode('utf-8')).hexdigest()[-64:]
+
+    firstpart = hashlib.sha512('smallbank'.encode('utf-8')).hexdigest()[0:6]
+
+    print(firstpart)
+
+    secondpart = hashlib.sha512('49'.encode('utf-8')).hexdigest()[0:64]
+    print(secondpart)
 
 
-customer1 = _sha512_small_bank(1)
+customer1 = _sha512_small_bank(49)
 
 print(customer1)
 
@@ -63,7 +69,7 @@ message CreateAccountTransactionData {
 small_payload = protosma_pb2.SmallbankTransactionPayload(
     payload_type=protosma_pb2.SmallbankTransactionPayload.CREATE_ACCOUNT,
     create_account=protosma_pb2.SmallbankTransactionPayload.CreateAccountTransactionData(
-        customer_id=1,
+        customer_id=42,
         customer_name='eric',
         initial_savings_balance=2000,
         initial_checking_balance=1500
@@ -87,8 +93,8 @@ print([customer1])
 txn_header_bytes = TransactionHeader(
     family_name='smallbank',
     family_version='1.0',
-    inputs=[customer1],
-    outputs=[customer1],
+    inputs=['332514d7901dac15fda6c4d45a19f8057bde312161d25520c32e96565b96460fc60905'],
+    outputs=['3325143ff98ae73225156b2c6c9ceddbfc16f5453e8fa49fc10e5d96a3885546a46ef4'],
     signer_public_key=signer.get_public_key().as_hex(),
     # In this example, we're signing the batch with the same private key,
     # but the batch can be signed by another party, in which case, the
@@ -99,7 +105,7 @@ txn_header_bytes = TransactionHeader(
     # this transaction to successfully commit.
     # For example,
     # dependencies=['540a6803971d1880ec73a96cb97815a95d374cbad5d865925e5aa0432fcf1931539afe10310c122c5eaae15df61236079abbf4f258889359c4d175516934484a'],
-    dependencies=[customer1],
+    dependencies=[],
     payload_sha512=hashlib.sha512(payload_bytes).hexdigest()
 ).SerializeToString()
 
@@ -140,7 +146,7 @@ batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
 
 # send the batches
 
-
+'''
 try:
     request = urllib.request.Request(
         'http://localhost:8008/batches',
@@ -152,4 +158,5 @@ try:
 
 except HTTPError as e:
     response = e.file
+'''
 

@@ -41,6 +41,8 @@ services:
   smallbank-tp-go:
     image: hyperledger/sawtooth-smallbank-tp-go
     container_name: sawtooth-smallbank-tp-go-default
+    expose: 
+      - 4004
     depends_on:
       - validator
     entrypoint: smallbank-tp-go -vv -C tcp://validator:4004
