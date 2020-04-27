@@ -16,14 +16,17 @@ LOGGER = logging.getLogger(__name__)
 
 VALID_VERBS = 'set', 'inc', 'dec'
 
+
 MIN_VALUE = 0
 MAX_VALUE = 4294967295
 MAX_NAME_LENGTH = 20
 
-FAMILY_NAME = 'intkey'
+FAMILY_NAME = 'bike'
 
 INTKEY_ADDRESS_PREFIX = hashlib.sha512(
     FAMILY_NAME.encode('utf-8')).hexdigest()[0:6]
+
+print(INTKEY_ADDRESS_PREFIX)
 
 
 class IntkeyTransactionHandler(TransactionHandler):
@@ -43,15 +46,22 @@ class IntkeyTransactionHandler(TransactionHandler):
         return [INTKEY_ADDRESS_PREFIX]
 
     def apply(self, transaction, context):
+
+        # receives the transactions and unpacks it 
         verb, name, value = _unpack_transaction(transaction)
 
+        # get the current state, we will need this one so that we can come up with an new state
         state = _get_state_data(name, context)
 
+        # creates a new state using the old state, the verb, the name and the value
         updated_state = _do_intkey(verb, name, value, state)
 
-        _set_state_data(name, updated_state, context)
+        # current_state = updated_state
+        # _set_state_data(name, updated_state, context)
 
 
+# 1st thing that happens when we receive the payload in cbor
+# do in cbor, then do it with proto objects
 def _unpack_transaction(transaction):
     verb, name, value = _decode_transaction(transaction)
 

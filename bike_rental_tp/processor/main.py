@@ -9,7 +9,7 @@ from sawtooth_sdk.processor.config import get_log_config
 from sawtooth_sdk.processor.config import get_log_dir
 from handler import IntkeyTransactionHandler
 
-DISTRIBUTION_NAME = 'bike-rental'
+DISTRIBUTION_NAME = 'bike'
 
 
 def parse_args(args):
@@ -68,7 +68,7 @@ def main(args=None):
             # use the transaction processor zmq identity for filename
             log_configuration(
                 log_dir=log_dir,
-                name="intkey-" + str(processor.zmq_id)[2:-1])
+                name="bike_rental-" + str(processor.zmq_id)[2:-1])
 
         init_console_logging(verbose_level=opts.verbose)
 
