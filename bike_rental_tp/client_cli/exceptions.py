@@ -1,6 +1,8 @@
-class IntKeyCliException(Exception):
+class BikeCliException(Exception):
+    print('bike cli exception')
     pass
 
 
-class IntkeyClientException(Exception):
+class BikeClientException(Exception):
+    print('bike client exception')
     pass

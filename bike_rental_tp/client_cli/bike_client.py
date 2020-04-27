@@ -32,13 +32,13 @@ class BikeClient:
                     private_key_str = fd.read().strip()
                     fd.close()
             except OSError as err:
-                raise IntkeyClientException(
+                raise BikeClientException(
                     'Failed to read private key: {}'.format(str(err)))
 
             try:
                 private_key = Secp256k1PrivateKey.from_hex(private_key_str)
             except ParseError as e:
-                raise IntkeyClientException(
+                raise BikeClientException(
                     'Unable to load private key: {}'.format(str(e)))
 
             self._signer = CryptoFactory(
@@ -88,10 +88,10 @@ class BikeClient:
                 'batch_statuses?id={}&wait={}'.format(batch_id, wait),)
             return yaml.safe_load(result)['data'][0]['status']
         except BaseException as err:
-            raise IntkeyClientException(err)
+            raise BikeClientException(err)
 
     def _get_prefix(self):
-        return _sha512('intkey'.encode('utf-8'))[0:6]
+        return _sha512('bike'.encode('utf-8'))[0:6]
 
     def _get_address(self, name):
         prefix = self._get_prefix()
@@ -116,18 +116,18 @@ class BikeClient:
                 result = requests.get(url, headers=headers)
 
             if result.status_code == 404:
-                raise IntkeyClientException("No such key: {}".format(name))
+                raise BikeClientException("No such key: {}".format(name))
 
             if not result.ok:
-                raise IntkeyClientException("Error {}: {}".format(
+                raise BikeClientException("Error {}: {}".format(
                     result.status_code, result.reason))
 
         except requests.ConnectionError as err:
-            raise IntkeyClientException(
+            raise BikeClientException(
                 'Failed to connect to REST API: {}'.format(err))
 
         except BaseException as err:
-            raise IntkeyClientException(err)
+            raise BikeClientException(err)
 
         return result.text
 
@@ -143,7 +143,7 @@ class BikeClient:
 
         header = TransactionHeader(
             signer_public_key=self._signer.get_public_key().as_hex(),
-            family_name="intkey",
+            family_name="bike",
             family_version="1.0",
             inputs=[address],
             outputs=[address],

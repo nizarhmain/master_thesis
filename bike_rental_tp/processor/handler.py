@@ -23,10 +23,15 @@ MAX_NAME_LENGTH = 20
 
 FAMILY_NAME = 'bike'
 
-INTKEY_ADDRESS_PREFIX = hashlib.sha512(
+BIKE_ADDRESS_PREFIX = hashlib.sha512(
     FAMILY_NAME.encode('utf-8')).hexdigest()[0:6]
 
-print(INTKEY_ADDRESS_PREFIX)
+print(BIKE_ADDRESS_PREFIX)
+
+
+def make_bike_address(name):
+    return BIKE_ADDRESS_PREFIX + hashlib.sha512(
+        name.encode('utf-8')).hexdigest()[-64:]
 
 
 class IntkeyTransactionHandler(TransactionHandler):
@@ -43,7 +48,7 @@ class IntkeyTransactionHandler(TransactionHandler):
 
     @property
     def namespaces(self):
-        return [INTKEY_ADDRESS_PREFIX]
+        return [BIKE_ADDRESS_PREFIX]
 
     def apply(self, transaction, context):
 
@@ -54,7 +59,7 @@ class IntkeyTransactionHandler(TransactionHandler):
         state = _get_state_data(name, context)
 
         # creates a new state using the old state, the verb, the name and the value
-        updated_state = _do_intkey(verb, name, value, state)
+        updated_state = _do_bike(verb, name, value, state)
 
         # current_state = updated_state
         # _set_state_data(name, updated_state, context)
@@ -118,7 +123,7 @@ def _validate_value(value):
 
 
 def _get_state_data(name, context):
-    address = make_intkey_address(name)
+    address = make_bike_address(name)
 
     state_entries = context.get_state([address])
 
@@ -131,7 +136,7 @@ def _get_state_data(name, context):
 
 
 def _set_state_data(name, state, context):
-    address = make_intkey_address(name)
+    address = make_bike_address(name)
 
     encoded = cbor.dumps(state)
 
@@ -141,7 +146,7 @@ def _set_state_data(name, state, context):
         raise InternalError('State error')
 
 
-def _do_intkey(verb, name, value, state):
+def _do_bike(verb, name, value, state):
     verbs = {
         'set': _do_set,
         'inc': _do_inc,
