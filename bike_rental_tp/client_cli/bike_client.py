@@ -26,23 +26,17 @@ class BikeClient:
     def __init__(self, url, keyfile=None):
         self.url = url
 
-        if keyfile is not None:
-            try:
-                with open(keyfile) as fd:
-                    private_key_str = fd.read().strip()
-                    fd.close()
-            except OSError as err:
-                raise BikeClientException(
-                    'Failed to read private key: {}'.format(str(err)))
+        # signing part
 
-            try:
-                private_key = Secp256k1PrivateKey.from_hex(private_key_str)
-            except ParseError as e:
-                raise BikeClientException(
-                    'Unable to load private key: {}'.format(str(e)))
+        context = create_context('secp256k1')
+        private_key = context.new_random_private_key()
 
-            self._signer = CryptoFactory(
-                create_context('secp256k1')).new_signer(private_key)
+        # sets the signer with the random private key signing
+        print(private_key)
+        self._signer = CryptoFactory(context).new_signer(private_key)
+
+    def create_bike(self, payload, wait=None):
+        return self._send_transaction('create_bike_tx', payload, wait=wait)
 
     def set(self, name, value, wait=None):
         return self._send_transaction('set', name, value, wait=wait)
@@ -93,10 +87,10 @@ class BikeClient:
     def _get_prefix(self):
         return _sha512('bike'.encode('utf-8'))[0:6]
 
-    def _get_address(self, name):
+    def _get_address(self, bikeType):
         prefix = self._get_prefix()
-        game_address = _sha512(name.encode('utf-8'))[64:]
-        return prefix + game_address
+        bike_storage = _sha512(bikeType.encode('utf-8'))[64:]
+        return prefix + bike_storage
 
     def _send_request(self, suffix, data=None, content_type=None, name=None):
         if self.url.startswith("http://"):
@@ -131,15 +125,15 @@ class BikeClient:
 
         return result.text
 
-    def _send_transaction(self, verb, name, value, wait=None):
-        payload = cbor.dumps({
-            'Verb': verb,
-            'Name': name,
-            'Value': value,
-        })
+    # the payload is already the cbor dump
+    def _send_transaction(self, type, payload, wait=None):
+
+        bikeType_addr = cbor.loads(payload)['bikeType']
 
         # Construct the address
-        address = self._get_address(name)
+        address = self._get_address(bikeType_addr)
+
+        print(address)
 
         header = TransactionHeader(
             signer_public_key=self._signer.get_public_key().as_hex(),
@@ -203,3 +197,15 @@ class BikeClient:
             transactions=transactions,
             header_signature=signature)
         return BatchList(batches=[batch])
+
+
+bk = BikeClient('http://localhost:8008')
+
+first_create_payload = cbor.dumps({
+    'Type': 'create_bike_tx',
+    'bikeType': 'racing bike',
+    'available': 9
+})
+
+bk.create_bike(first_create_payload)
+

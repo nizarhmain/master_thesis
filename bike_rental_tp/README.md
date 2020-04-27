@@ -70,6 +70,17 @@ In case of damage the customer reports it with a transaction.
 **payload** : ```uint request_id, string bikeId```
 
 
+## Special transactions for the Bike center
+
+```create_bike_tx```: only the bike center is able to execute this transaction. It's aim is to initialize a pool of bikes. 
+
+**payload** : ```string bikeType , uint available```
+
+
+
+
+
+
 
 
 

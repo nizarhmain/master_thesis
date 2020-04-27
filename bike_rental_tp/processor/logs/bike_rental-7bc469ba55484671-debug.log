@@ -1,0 +1,3 @@
+[20:43:53.882 [MainThread] core INFO] register attempt: OK
+[20:44:11.060 [MainThread] core DEBUG] received message of type: PING_REQUEST
+[20:44:14.741 [MainThread] core INFO] unregister attempt: OK

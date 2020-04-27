@@ -1,0 +1,8 @@
+[20:42:02.175 [MainThread] core INFO] register attempt: OK
+[20:42:02.175 [MainThread] core DEBUG] received message of type: TP_PROCESS_REQUEST
+[20:42:02.176 [MainThread] core WARNING] Invalid Transaction bike type goes brrrrr
+[20:42:02.180 [MainThread] core DEBUG] received message of type: TP_PROCESS_REQUEST
+[20:42:02.180 [MainThread] core WARNING] Invalid Transaction bike type goes brrrrr
+[20:42:02.183 [MainThread] core DEBUG] received message of type: TP_PROCESS_REQUEST
+[20:42:02.184 [MainThread] core WARNING] Invalid Transaction bike type goes brrrrr
+[20:42:09.054 [MainThread] core INFO] unregister attempt: OK

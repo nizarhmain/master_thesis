@@ -16,6 +16,8 @@ LOGGER = logging.getLogger(__name__)
 
 VALID_VERBS = 'set', 'inc', 'dec'
 
+VALID_TYPES = 'create_bike_tx, request_tx'
+
 
 MIN_VALUE = 0
 MAX_VALUE = 4294967295
@@ -52,14 +54,14 @@ class IntkeyTransactionHandler(TransactionHandler):
 
     def apply(self, transaction, context):
 
-        # receives the transactions and unpacks it 
+        # receives the transactions and unpacks it
         verb, name, value = _unpack_transaction(transaction)
 
         # get the current state, we will need this one so that we can come up with an new state
-        state = _get_state_data(name, context)
+        # state = _get_state_data(name, context)
 
         # creates a new state using the old state, the verb, the name and the value
-        updated_state = _do_bike(verb, name, value, state)
+        # updated_state = _do_bike(verb, name, value, state)
 
         # current_state = updated_state
         # _set_state_data(name, updated_state, context)
@@ -68,38 +70,40 @@ class IntkeyTransactionHandler(TransactionHandler):
 # 1st thing that happens when we receive the payload in cbor
 # do in cbor, then do it with proto objects
 def _unpack_transaction(transaction):
-    verb, name, value = _decode_transaction(transaction)
 
-    _validate_verb(verb)
-    _validate_name(name)
-    _validate_value(value)
+    # figure out what the type is
+    list_kv = _decode_transaction(transaction)
 
-    return verb, name, value
+    # _validate_verb(verb)
+    # _validate_name(name)
+    # _validate_value(value)
+
+    # figure out what type of transaction it is
+
+    return list_kv
 
 
 def _decode_transaction(transaction):
+
     try:
         content = cbor.loads(transaction.payload)
+        type = content['Type']
+        print(type)
     except:
         raise InvalidTransaction('Invalid payload serialization')
 
-    try:
-        verb = content['Verb']
-    except AttributeError:
-        raise InvalidTransaction('Verb is required')
+        if type == 'create_bike_tx':
+            print(content)
+            # create_bike(content)
 
-    try:
-        name = content['Name']
-    except AttributeError:
-        raise InvalidTransaction('Name is required')
 
-    try:
-        value = content['Value']
-    except AttributeError:
-        raise InvalidTransaction('Value is required')
 
-    return verb, name, value
 
+
+    return content 
+
+
+# Validation
 
 def _validate_verb(verb):
     if verb not in VALID_VERBS:
@@ -144,6 +148,16 @@ def _set_state_data(name, state, context):
 
     if not addresses:
         raise InternalError('State error')
+
+
+def create_bike(payload):
+    print('creating bike')
+    # create a new address for bike types
+    msg = 'Setting "{n}" to {v}'.format(
+        n=payload.bikeType, v=payload.available)
+    LOGGER.debug(msg)
+
+    print(msg)
 
 
 def _do_bike(verb, name, value, state):
