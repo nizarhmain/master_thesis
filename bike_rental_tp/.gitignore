@@ -1,5 +1,4 @@
-logs/intkey*
-!logs/.gitkeep 
+logs
 
 
 __pycache__

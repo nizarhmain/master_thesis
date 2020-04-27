@@ -1,7 +1,0 @@
-[20:48:35.056 [MainThread] core INFO] register attempt: OK
-[20:48:42.788 [MainThread] core DEBUG] received message of type: TP_PROCESS_REQUEST
-[20:48:43.339 [MainThread] core DEBUG] received message of type: TP_PROCESS_REQUEST
-[20:48:54.704 [MainThread] core DEBUG] received message of type: PING_REQUEST
-[20:49:14.709 [MainThread] core DEBUG] received message of type: PING_REQUEST
-[20:49:34.725 [MainThread] core DEBUG] received message of type: PING_REQUEST
-[20:49:44.738 [MainThread] core DEBUG] received message of type: PING_REQUEST
