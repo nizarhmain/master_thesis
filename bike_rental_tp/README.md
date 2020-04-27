@@ -9,8 +9,28 @@ Transaction Family : *bike*
 
 ### State
 
+The state would contain at this point only one type of addresses. Those addresses would represent the bike types.
+
+
+The address would contain the following information
+
+```
+string bikeType
+uint available 
+```
+
+For example we can have two different addresses in our state
+
+- one for a mountain bike
+- one for a racing bike
+
+Everytime the ```bike_leasing_tx``` would be executed successfully on the processor. The available number of bikes of that type would decrement. The reverse happens when the ```give_bike_back_tx``` is executed. The state so far is only useful for us to know how many bikes we have. We **GET** and **SET** these addresses only in those two transactions.
+
 
 ### Addressing
+
+``` 5a67b6 ``` this it he prefix for the bike family
+The rest of the bytes are unique for the bikeType.
 
 
 ### Transactions 
