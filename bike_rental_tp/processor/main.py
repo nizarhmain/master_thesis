@@ -1,6 +1,7 @@
 import sys
 import argparse
 import pkg_resources
+import os
 
 from sawtooth_sdk.processor.core import TransactionProcessor
 from sawtooth_sdk.processor.log import init_console_logging
@@ -41,13 +42,17 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
+def create_local_log_dir():
+    if not os.path.exists('./logs'):
+        os.makedirs('./logs')
+
+
 def main(args=None):
     print('i ran')
     if args is None:
         args = sys.argv[1:]
     opts = parse_args(args)
     processor = None
-
 
     try:
         processor = TransactionProcessor(url=opts.connect)
@@ -63,6 +68,8 @@ def main(args=None):
         if log_config is not None:
             log_configuration(log_config=log_config)
         else:
+            create_local_log_dir()
+
             # log_dir = get_log_dir()
             log_dir = './logs'
             # use the transaction processor zmq identity for filename
@@ -87,5 +94,6 @@ def main(args=None):
     finally:
         if processor is not None:
             processor.stop()
+
 
 main()
