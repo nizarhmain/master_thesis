@@ -27,13 +27,49 @@ Transaction Family : *bike*
 
 ```bike_leasing_tx``` : When the request has been processed by the Bike center and the bike is physically ready to be given to the customer. the final payment is also assumed to happen now.
 
-**payload** : ``` uint request_id ```
+**payload** : ``` uint request_id, string bikeId ```
 
 At this point 2 things can happen. During the usage of the bike by the user, there might be some damage caused by the customer. In this eventuality, we have the following transactions. We assume that customer also always leaves a feedback about the bike, even in case of damage.
 
 ```feedback_tx``` : simple message from the customer containing a string message. We can identify who left by looking at the public signature.
 
 **payload** : ``` string message ```
+
+In case of damage the customer reports it with a transaction.
+
+```report_damage_tx``` : report of the damaged cause to the bike.
+
+**payload** : ``` uint request_id, string description ```
+
+```damage_evaluation_tx```: the bike center evaluates the damage and can potentially ask for a refund.
+
+**payload** : ``` uint request_id, bool ask, uint amount```
+
+```give_bike_back_tx```: the customer is done with his lease and returns the bike to the bike center.
+
+**payload** : ```uint request_id, string bikeId```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
