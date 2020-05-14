@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="6.5.1">
+  <bpmn:process id="Process_0" name="Process_0" isExecutable="false">
+    <bpmn:startEvent id="Event_03geg3k">
+      <bpmn:outgoing>Flow_002j4ry</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_17zso2g" name="firstask">
+      <bpmn:incoming>Flow_002j4ry</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rdhuvs</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_002j4ry" sourceRef="Event_03geg3k" targetRef="Activity_17zso2g" />
+    <bpmn:endEvent id="Event_1y9xp5v">
+      <bpmn:incoming>Flow_1rdhuvs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1rdhuvs" sourceRef="Activity_17zso2g" targetRef="Event_1y9xp5v" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0">
+      <bpmndi:BPMNEdge id="Flow_002j4ry_di" bpmnElement="Flow_002j4ry">
+        <di:waypoint x="158" y="160" />
+        <di:waypoint x="250" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rdhuvs_di" bpmnElement="Flow_1rdhuvs">
+        <di:waypoint x="350" y="160" />
+        <di:waypoint x="442" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_03geg3k_di" bpmnElement="Event_03geg3k">
+        <dc:Bounds x="122" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17zso2g_di" bpmnElement="Activity_17zso2g">
+        <dc:Bounds x="250" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1y9xp5v_di" bpmnElement="Event_1y9xp5v">
+        <dc:Bounds x="442" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
