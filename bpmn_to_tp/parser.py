@@ -200,4 +200,8 @@ for msgflow in messageFlows:
 # preconditions_choreotask('ChoreographyTask_0tydxhk')
 
 # initial requ
-preconditions_choreotask('ChoreographyTask_1tcylad')
+# preconditions_choreotask('ChoreographyTask_1tcylad')
+
+
+# pay bike
+preconditions_choreotask('ChoreographyTask_0j5nws5')

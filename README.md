@@ -149,6 +149,18 @@ client = create transactions and batches and submit them. anything really. mobil
 - [Sabre](https://sawtooth.hyperledger.org/docs/sabre/releases/latest/sabre_transaction_family.html)
 
 
+# Seth
+
+Hyperledger burrow + sawtooth = runnable smart contracts written in solidity
+
+- [Seth] (https://sawtooth.hyperledger.org/docs/seth/releases/latest/seth_transaction_family_spec.html)
+
+
+- ! Important, make sure to add the reference for the docker volume in the docker-compose.yaml file in the sawtooth-seth folder. The volume is not added on the original compose file. Hence the seth-rpc program can't find the alias keys needed to unlock the accs through the rpc. I think it's because there are two version of the seth-cli, one in rust and one in go.
+
+
+
+
 ## Consensus
 
 - [General consensus stuff](https://www.hyperledger.org/blog/2018/11/09/hyperledger-sawtooth-blockchain-security-part-one)
@@ -339,44 +351,6 @@ so if we are writing the client we need the PROTO compiler to compile the .proto
 
 
 # How to do the performance load on the small banking
-
-```
-smallbank-workload playlist create --accounts 1000 -n 100000 -o smallbank.playlist
-
-smallbank-workload playlist process -i smallbank.playlist -k ~/.sawtooth/keys/mykey.priv -o smallbank.txns
-
-smallbank-workload batch -i smallbank.txns -k ~/.sawtooth/keys/mykey.priv --max-batch-size 10 -o smallbank.batches
-
-smallbank-workload submit -i smallbank.batches -r 10 --target http://10.0.2.81:8008
-
-
-```
-
-# Important
-
-basically the addressing that is in the wiki is actually wrong (suggest a fix maybe later to them. this is super cryptic)
-use the addressing schema from this repo instead of the one in the wiki.
-
-
-# After that try to check the wallet repo, and see how different it is
-
-[simple wallet](https://github.com/askmish/sawtooth-simplewallet)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
