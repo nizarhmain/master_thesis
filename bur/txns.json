@@ -1,0 +1,37 @@
+{
+  "Height": 3,
+  "Tx": {
+    "Signatories": [
+      {
+        "Address": "9BFBF37993A52A7428CB2D5CE2E05674B2008193",
+        "PublicKey": {
+          "CurveType": "ed25519",
+          "PublicKey": "657B3D1386FA6CA01E60876F16E7AF02180711F6B3317F732B80E7D045C5D43D"
+        },
+        "Signature": {
+          "CurveType": 1,
+          "Signature": "PdAp3ax28W4oRmfJVDo/pGGlK56vCOzqm5cOuI3WHHLiaX/g2WP2kZak0mrOdfECdvWfNNWSDZt+cwuqiKz3Dg=="
+        }
+      }
+    ],
+    "Tx": {
+      "ChainID": "BurrowChain_FAB3C1-364186",
+      "Type": "SendTx",
+      "Payload": {
+        "Inputs": [
+          {
+            "Address": "9BFBF37993A52A7428CB2D5CE2E05674B2008193",
+            "Amount": 30,
+            "Sequence": 1
+          }
+        ],
+        "Outputs": [
+          {
+            "Address": "DBADFD9F7F25A10679EA0B5831B8C46D114CBF22",
+            "Amount": 30
+          }
+        ]
+      }
+    }
+  }
+}
