@@ -8,13 +8,20 @@ import json
 from web3 import Web3, HTTPProvider, IPCProvider, WebsocketProvider
 
 
-NODE_PORT = 22002 
+NODE_PORT = 22001 
 
 PRIVATE_ABI = '[{"constant":true,"inputs":[],"name":"storedData","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"x","type":"uint256"}],"name":"set","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"get","outputs":[{"name":"retVal","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"initVal","type":"uint256"}],"payable":false,"type":"constructor"}]'
 
 FIRST_TX = '0x58d58bf5b1bfc3ce5270953d4ff3c1067177390d86ac8ba974a1f6f286859473'
 
 w3 = Web3(HTTPProvider(f'http://localhost:{NODE_PORT}'))
+
+
+tx = w3.geth.admin.peers()[0]['enode']
+print(tx)
+
+
+# print([json.dumps(w3.geth.admin.peers()], indent=4, sort_keys=True))
 
 
 class bcolors:
