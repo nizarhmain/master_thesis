@@ -1,4 +1,10 @@
 
+# quorum vs hyperledger fabric
+
+
+- [medium article](https://medium.com/corda/corda-v-hyperledger-v-quorum-v-ethereum-v-bitcoin-58f2f0890dce)
+
+
 
 # read this
 
