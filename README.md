@@ -396,6 +396,10 @@ This the repo
 - JPMorgan backed. It's essentially there fork of Ethereum, so the tooling is kind of up to date to the eth ecosystem.
 
 
+## Check corda
+
+- it only sends the data to whoever needs it, instead of having populating databases (quorum) or creating a million side-channels
+
 
 # quorum vs hyperledger fabric
 
