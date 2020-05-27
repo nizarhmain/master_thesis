@@ -1,12 +1,6 @@
 
-# quorum vs hyperledger fabric
 
-
-- [medium article](https://medium.com/corda/corda-v-hyperledger-v-quorum-v-ethereum-v-bitcoin-58f2f0890dce)
-
-
-
-# read this
+# Thesis artefacts
 
 potential project
 
@@ -238,15 +232,9 @@ significant complexity or reduces confidentiality
 
 
 
-
-
-
-
 UTXO are unspent transaction outputs. 
 
 When off-Ledger, the assets are represented as a document. This document holds the details of the assets. The sha512 hash of this document is the UTXO handle. In this case, the document is in a very real sense the asset that is being represented. Having access to the document will provide the details of the asset and who owns it. As such, it is important that the document is kept secret and protected. UTXODocument is considered valid when there is a matching UTXO record in the DLT. If there is not a matching entry in the DLT then the Asset has either been consumed or has not yet be recorded with Convert to UTXO or Transfer UTXO transactions.
-
-
 
 
 
@@ -409,7 +397,11 @@ This the repo
 
 
 
+# quorum vs hyperledger fabric
 
+- essentially with fabric channels, you end up with 100 000 subchannels, and that slows the network a lot
+
+- [medium article](https://medium.com/corda/corda-v-hyperledger-v-quorum-v-ethereum-v-bitcoin-58f2f0890dce)
 
 
 
