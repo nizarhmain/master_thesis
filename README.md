@@ -408,6 +408,47 @@ This the repo
 - [medium article](https://medium.com/corda/corda-v-hyperledger-v-quorum-v-ethereum-v-bitcoin-58f2f0890dce)
 
 
+# Private Data
+
+##  trying to mimick quorum's private data system on sawtooth  
+
+See if you can implement a system based on pub-priv key encryption at least to hide the data from users that are not supposed to see it.
+
+If you can't see the transaction as a part of the chain, you can't validate it, so you loose validitiy
+
+- full privacy == loss of validity 
+
+This I think goes against the purpose of the blockchain as an idea, it feels like you are trying to force a certain technology regardless of its fit in the current context.
+
+
+<img src="https://raw.githubusercontent.com/jpmorganchase/tessera/master/Tessera%20Privacy%20flow.jpeg" height="700">
+
+<img src="https://sawtooth.hyperledger.org/docs/core/releases/latest/_images/arch-sawtooth-overview.svg" height="500">
+
+
+
+
+## Ideas to try out 
+
+- write a transaction processor that mimicks the idea of a Tessera node with an enclave. Notice how the Transaction processors are adjacent to the Validator. It looks very much like a The quorum node and the tessera node communication.
+- encrypt the data with another box
+- for now, the data will be stored on chain (maybe we could find a way to offload the storage offchain in the future)
+- broadcast the encrypted payload via encryption for now (i'm sure there are distributed systems mechanims that could achieve that, but let's stick with the basic idea here that is of achieving private data on sawtooth)
+- Enclave in quorum = Private-tp on sawtooth
+- Private-tp : would handle all the encryption of payloads according to a privateFor key that would be the public keys of the entities that could decrypt it using their private key
+
+
+## Scenarios 
+
+- achieve private key-value payloads.
+- encrypted EVM code. make sure to decrypt it before it is used by sawtooth-seth or something
+
+
+
+
+
+
+
 
 
 
