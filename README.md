@@ -444,6 +444,28 @@ This I think goes against the purpose of the blockchain as an idea, it feels lik
 - encrypted EVM code. make sure to decrypt it before it is used by sawtooth-seth or something
 
 
+### Steps
+
+- figure out how basic encryption is done with the pair keys on sawtooth
+- write the TP that encapsulates that mechanism 
+
+## Encryption with secp256k and coincurve
+
+go to the folder private_data/ and look for the script public_encryption
+- using coincurve we can use the keys stored at /root/.sawtooth/keys/*.pem to generate encrypted payload that we can then store on the chain, meaning that we would need to encrypt the payload for n amount of privateFor people.
+- you need two main libraries
+```
+# the encrypt and decrypt method  
+pip3 install eciespy
+
+# the Coincurve.PrivateKey object, generate this object from the hex
+pip3 install coincurve
+
+```
+
+The next step is to implement this logic inside a transaction processor
+
+
 
 
 
