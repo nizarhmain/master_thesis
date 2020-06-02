@@ -410,7 +410,20 @@ This the repo
 
 # Private Data
 
+
+![private-data](docs/privacy_diagram.png)
+
+
+## channels-like behavior in sawtooth
+
+![consortium-nets](docs/consortium_nets.png)
+
+
 ##  trying to mimick quorum's private data system on sawtooth  
+
+
+![quorum](docs/simple_quorum.png)
+
 
 See if you can implement a system based on pub-priv key encryption at least to hide the data from users that are not supposed to see it.
 
@@ -424,8 +437,6 @@ This I think goes against the purpose of the blockchain as an idea, it feels lik
 <img src="https://raw.githubusercontent.com/jpmorganchase/tessera/master/Tessera%20Privacy%20flow.jpeg" height="700">
 
 <img src="https://sawtooth.hyperledger.org/docs/core/releases/latest/_images/arch-sawtooth-overview.svg" height="500">
-
-
 
 
 ## Ideas to try out 
