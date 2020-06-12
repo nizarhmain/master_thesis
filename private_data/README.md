@@ -18,13 +18,24 @@ The most logical and easiest way to add encryption would be to write an external
 Advantage is that the cryptography is more limited in scope and more controlled. Since's it's not a global change to the codebase.
 However it requires some code change from the developers writing those TP's. It seems that is is a logical thing to do thought, since developers are the ones would want to have cryptography on some transactions and not on some other TP's. A bit more complex on the usability side but that gives more technical control for the developer.
 
+## Writing a Transaction Family for private data in Sawtooth that support public key encryption
+
+- privateFor: list of public keys (targets of the code)
+- original_transactionFamily: the original transaction family (use the protobufs)
+- encrypted_payload: self-explanatory
+
+NOTE: maybe add zero knowledge proof later with [noknow](https://pypi.org/project/noknow/) with this library
 
 
 
+```
+sudo apt install libsecp256k1-dev
 
+# install this before install the python sawtooth_Sdk
 
+pip3 install sawtooth-sdk
 
-
+```
 
 
 
