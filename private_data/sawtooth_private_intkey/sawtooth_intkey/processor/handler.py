@@ -73,9 +73,9 @@ class IntkeyTransactionHandler(TransactionHandler):
 def _unpack_transaction(transaction):
     verb, name, value = _decode_transaction(transaction)
 
-    # _validate_verb(verb)
-    # _validate_name(name)
-    # _validate_value(value)
+    _validate_verb(verb)
+    _validate_name(name)
+    #_validate_value(value)
 
     return verb, name, value
 

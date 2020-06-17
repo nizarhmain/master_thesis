@@ -16,6 +16,7 @@
 import sys
 import argparse
 import pkg_resources
+
 import os
 
 from sawtooth_sdk.processor.core import TransactionProcessor
@@ -24,11 +25,10 @@ from sawtooth_sdk.processor.log import log_configuration
 from sawtooth_sdk.processor.config import get_log_config
 from sawtooth_sdk.processor.config import get_log_dir
 
-
-from handler import IntkeyTransactionHandler
-
+from sawtooth_intkey.processor.handler import IntkeyTransactionHandler
 
 DISTRIBUTION_NAME = 'sawtooth-intkey'
+
 
 # create logs dir if not exist
 def create_log_dir():
@@ -84,10 +84,9 @@ def main(args=None):
         else:
             # log_dir = get_log_dir()
 
-            # check if it's not there, use the local path to create the dir
             create_log_dir()
+            log_dir = "./logs"
 
-            log_dir = './logs'
             # use the transaction processor zmq identity for filename
             log_configuration(
                 log_dir=log_dir,
@@ -112,4 +111,3 @@ def main(args=None):
 
 
 main()
-

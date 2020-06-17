@@ -39,8 +39,14 @@ from sawtooth_intkey.client_cli.exceptions import IntKeyCliException
 from sawtooth_intkey.client_cli.exceptions import IntkeyClientException
 
 
+# adding the enclave for payload encryption
+# stands for enclave encrypt
+from sawtooth_intkey.enclave import enclave_enc 
+
+
 DISTRIBUTION_NAME = 'sawtooth-intkey'
 
+PRIVATE_FOR = '0227ffac7d33231086df84e12f0856c0e985c18d3daa2c94c7abcbff9a6aa8b258'
 
 DEFAULT_URL = 'http://127.0.0.1:8008'
 
@@ -164,6 +170,12 @@ def add_set_parser(subparsers, parent_parser):
 def do_set(args):
     name, value, wait = args.name, args.value, args.wait
     client = _get_client(args)
+
+    # encryption
+
+    encrypted_val = enclave_enc(PRIVATE_FOR, value)
+    print(encrypted_val)
+
     response = client.set(name, value, wait)
     print(response)
 
@@ -381,3 +393,6 @@ def main_wrapper():
     except:
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
+
+
+main_wrapper()

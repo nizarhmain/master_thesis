@@ -66,6 +66,6 @@ def enclave_enc(pub, bytes_data):
 	return encrypted 
 
 
-enclave_enc(pub, b'this is data')
-enclave_dec(priv, enclave_enc(pub, b'thi is data'))
+# enclave_enc(pub, b'this is data')
+# enclave_dec(priv, enclave_enc(pub, b'thi is data'))
 
