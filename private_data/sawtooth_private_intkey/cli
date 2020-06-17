@@ -1,0 +1,1 @@
+python3 -m sawtooth_intkey.client_cli.intkey_cli

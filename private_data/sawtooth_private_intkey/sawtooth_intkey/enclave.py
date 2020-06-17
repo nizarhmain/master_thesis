@@ -40,6 +40,9 @@ def enclave_dec(priv, bytes_data):
 
 def enclave_enc(pub, bytes_data):
 
+
+	print(bytes_data)
+
 	# pub = '0227ffac7d33231086df84e12f0856c0e985c18d3daa2c94c7abcbff9a6aa8b258'
 	# priv = 'ee113297d1fb3c214722aadf59a3d94dff24264ffc5c34b78c903b36eb1aeca8'
 	# print(pub)

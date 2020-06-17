@@ -173,10 +173,10 @@ def do_set(args):
 
     # encryption
 
-    encrypted_val = enclave_enc(PRIVATE_FOR, value)
+    encrypted_val = enclave_enc(PRIVATE_FOR, value.to_bytes(2, 'big'))
     print(encrypted_val)
 
-    response = client.set(name, value, wait)
+    response = client.set(name, encrypted_val, [PRIVATE_FOR],  wait)
     print(response)
 
 
