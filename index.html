@@ -100,57 +100,12 @@
 <ul>
 <li>This feature is not available by default on sawtooth so we wrote a script that manages to do that</li>
 </ul>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-attribute">from</span> ecies.utils import generate_key
-
-<span class="hljs-attribute">from</span> ecies import encrypt, decrypt
-
-<span class="hljs-attribute">import</span> binascii
-
-<span class="hljs-attribute">import</span> coincurve
-
-<span class="hljs-attribute">pub</span> = &#x27;<span class="hljs-number">0227</span>ffac<span class="hljs-number">7</span>d<span class="hljs-number">33231086</span>df<span class="hljs-number">84</span>e<span class="hljs-number">12</span>f<span class="hljs-number">0856</span>c<span class="hljs-number">0</span>e<span class="hljs-number">985</span>c<span class="hljs-number">18</span>d<span class="hljs-number">3</span>daa<span class="hljs-number">2</span>c<span class="hljs-number">94</span>c<span class="hljs-number">7</span>abcbff<span class="hljs-number">9</span>a<span class="hljs-number">6</span>aa<span class="hljs-number">8</span>b<span class="hljs-number">258</span>&#x27;
-<span class="hljs-attribute">priv</span> = &#x27;ee<span class="hljs-number">113297</span>d<span class="hljs-number">1</span>fb<span class="hljs-number">3</span>c<span class="hljs-number">214722</span>aadf<span class="hljs-number">59</span>a<span class="hljs-number">3</span>d<span class="hljs-number">94</span>dff<span class="hljs-number">24264</span>ffc<span class="hljs-number">5</span>c<span class="hljs-number">34</span>b<span class="hljs-number">78</span>c<span class="hljs-number">903</span>b<span class="hljs-number">36</span>eb<span class="hljs-number">1</span>aeca<span class="hljs-number">8</span>&#x27;
-
-</span></span></foreignObject></svg></code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25">
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>
-def enclave_dec(priv, bytes_data):
-	coincurve_privk = coincurve.PrivateKey.from_hex(priv)
-
-	sk_hex = coincurve_privk.secret
-	pk_hex = coincurve_privk.public_key.format(<span class="hljs-keyword">True</span>)
-
-	decrypted = decrypt(sk_hex, bytes_data) 
-	print(decrypted)
-	<span class="hljs-keyword">return</span> decrypted
-
-
-def enclave_enc(pub, bytes_data):
-	<span class="hljs-keyword">encrypted</span> = encrypt(pub, bytes_data) 
-	print(<span class="hljs-keyword">encrypted</span>)
-	<span class="hljs-keyword">return</span> <span class="hljs-keyword">encrypted</span> 
-
-
-enclave_enc(pub, b<span class="hljs-string">&#x27;this is data&#x27;</span>)
-enclave_dec(priv, enclave_enc(pub, b<span class="hljs-string">&#x27;thi is data&#x27;</span>))
-
-</span></span></foreignObject></svg></code></pre>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum.png&quot;);background-size:300px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="26" data-marpit-advanced-background="content"></section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum_features.png&quot;);background-size:1200px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="27" data-marpit-advanced-background="content"></section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28">
-<ul>
-<li>We can keep all the web3 tools that work with ethereum</li>
-<li>runs solidity smart contracts</li>
-<li>keeps up with the Eth eco-system</li>
-<li>has a private ledger to limit vibility</li>
-<li>production-ready battletested technology used in the real world</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum-node.png&quot;);background-size:600px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="29" data-marpit-advanced-background="content"></section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/tessera.jpeg&quot;);background-size:800px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="30" data-marpit-advanced-background="content"></section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum.png&quot;);background-size:300px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="25" data-marpit-advanced-background="content"></section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum_features.png&quot;);background-size:1200px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="26" data-marpit-advanced-background="content"></section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/quorum-node.png&quot;);background-size:600px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="27" data-marpit-advanced-background="content"></section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;docs/tessera.jpeg&quot;);background-size:800px auto;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="28" data-marpit-advanced-background="content"></section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29">
 <h1>Related references</h1>
 <p>Blockchains</p>
 <table>
@@ -209,7 +164,7 @@ enclave_dec(priv, enclave_enc(pub, b<span class="hljs-string">&#x27;thi is data&
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30">
 <p>Consensus related work</p>
 <table>
 <thead>
@@ -243,7 +198,7 @@ enclave_dec(priv, enclave_enc(pub, b<span class="hljs-string">&#x27;thi is data&
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31">
 <p>Security And Performance</p>
 <table>
 <thead>
@@ -287,7 +242,7 @@ enclave_dec(priv, enclave_enc(pub, b<span class="hljs-string">&#x27;thi is data&
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32">
 <p>Private data specific papers</p>
 <table>
 <thead>
