@@ -12,7 +12,7 @@ aa write a framework that tests the transaction processors
 
 - background and fundamentals
 	- data strucutre
-	x mining
+	- x mining
 	- merkle trees
 	- patricia trees
 	- modified merkle-patricia
@@ -31,8 +31,8 @@ aa write a framework that tests the transaction processors
 	- btc vs eth
 	- smart contracts in general
 	- evm
-	x Scalability
-	x Economics of Smart Contracts
+	- x Scalability
+	- x Economics of Smart Contracts
 - Hyperledger 
 	-
 - Quorum
