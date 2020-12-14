@@ -1,0 +1,34 @@
+- background and fundamentals
+	- data strucutre
+	x mining
+	- merkle trees
+	- patricia trees
+	- modified merkle-patricia
+	- cryptography
+	- Elliptic curve
+	- ECDSA
+	- common loopholes
+- decentralized / distributed nature 
+	- p2p
+	- consensus
+	- zkp
+	- pow
+	- pos
+	- byzantine fault tolerance
+- Ethereum and smart contracts
+	- btc vs eth
+	- smart contracts in general
+	- evm
+	x Scalability
+	x Economics of Smart Contracts
+- Hyperledger 
+	-
+- Quorum
+	-
+- ChorChain integration  
+
+
+
+
+
+

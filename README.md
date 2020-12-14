@@ -7,6 +7,41 @@ potential project
 aa write a framework that tests the transaction processors
 
 
+# Thesis structure so far
+
+
+- background and fundamentals
+	- data strucutre
+	x mining
+	- merkle trees
+	- patricia trees
+	- modified merkle-patricia
+	- cryptography
+	- Elliptic curve
+	- ECDSA
+	- common loopholes
+- decentralized / distributed nature 
+	- p2p
+	- consensus
+	- zkp
+	- pow
+	- pos
+	- byzantine fault tolerance
+- Ethereum and smart contracts
+	- btc vs eth
+	- smart contracts in general
+	- evm
+	x Scalability
+	x Economics of Smart Contracts
+- Hyperledger 
+	-
+- Quorum
+	-
+- ChorChain integration  
+
+
+
+# Additional material
 
 - [Certcoin](https://courses.csail.mit.edu/6.857/2014/files/19-fromknecht-velicann-yakoubov-certcoin.pdf) 
 - [Decentralized PKI](https://medium.com/hackernoon/decentralized-public-key-infrastructure-dpki-what-is-it-and-why-does-it-matter-babee9d88579)
