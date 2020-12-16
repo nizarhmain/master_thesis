@@ -12,12 +12,13 @@ aa write a framework that tests the transaction processors
 
 - background and fundamentals
 	- data strucutre
-	- x mining
+	- mining
 	- merkle trees
 	- patricia trees
 	- modified merkle-patricia
 	- cryptography
 	- Elliptic curve
+	x Bloom filters
 	- ECDSA
 	- common loopholes
 - decentralized / distributed nature 
@@ -31,7 +32,9 @@ aa write a framework that tests the transaction processors
 	- btc vs eth
 	- smart contracts in general
 	- evm
-	- x Scalability
+	- Scalability
+	- Security
+	- Security of Smart Contracts
 	- x Economics of Smart Contracts
 - Hyperledger 
 	-
