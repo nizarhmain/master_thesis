@@ -18,7 +18,7 @@ aa write a framework that tests the transaction processors
 	- modified merkle-patricia
 	- cryptography
 	- Elliptic curve
-	x Bloom filters
+	- x Bloom filters
 	- ECDSA
 	- common loopholes
 - decentralized / distributed nature 
