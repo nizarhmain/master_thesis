@@ -9,42 +9,61 @@ aa write a framework that tests the transaction processors
 
 # Thesis structure so far
 
-
 - background and fundamentals
-	- data strucutre
-	- mining
-	- merkle trees
-	- patricia trees
-	- modified merkle-patricia
-	- cryptography
-	- Elliptic curve
-	- x Bloom filters
-	- ECDSA
-	- common loopholes
-- decentralized / distributed nature 
-	- p2p
-	- consensus
-	- zkp
-	- pow
-	- pos
-	- byzantine fault tolerance
+        - data strucutre
+        - mining
+        - merkle trees
+        - patricia trees
+        - modified merkle-patricia
+        - cryptography
+        - Elliptic curve
+        - ECDSA
+        - common loopholes
+- decentralized / distributed nature
+        - p2p
+        - consensus
+        - zkp
+        - pow
+        - pos
+        - byzantine fault tolerance
 - Ethereum and smart contracts
-	- btc vs eth
-	- smart contracts in general
-	- evm
-	- Scalability
-	- Security
-	- Security of Smart Contracts
-	- x Economics of Smart Contracts
-- Hyperledger 
-	-
-- Quorum
-	-
-- ChorChain integration  
+        - btc vs eth
+        - smart contracts in general
+        - evm
+        - Scalability
+        - Economics of Smart Contracts
+        - Security of Smart contracts
+- x Hyperledger
+        - The foundation and the hp ecosystem
+        - Hyperledger fabric
+        - Hyperledger sawtooth
+        - Why we used it
+        - Hyperledger delve
+- x Quorum
+        - What problem does it solve
+        - The architecure and the tech behind it (mention alternatives as well)
+        - Why was sawtooth not fit for us
+
+- x ChorChain integration
+        - on BPMN
+        - on ChorChain
+        - EVM smart contracts being deployed there
+
+- Conclusion
+        - What were the steps involved
+
+
+
 
 
 
 # Additional material
+
+## Interesting reading material 
+
+- [Crypto quotes] (https://github.com/openblockchains/crypto-quotes)
+- [awesome blockchains] (https://github.com/openblockchains/awesome-blockchains)
+
 
 - [Certcoin](https://courses.csail.mit.edu/6.857/2014/files/19-fromknecht-velicann-yakoubov-certcoin.pdf) 
 - [Decentralized PKI](https://medium.com/hackernoon/decentralized-public-key-infrastructure-dpki-what-is-it-and-why-does-it-matter-babee9d88579)

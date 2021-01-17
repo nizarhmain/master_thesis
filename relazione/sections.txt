@@ -1,6 +1,6 @@
 - background and fundamentals
 	- data strucutre
-	x mining
+	- mining
 	- merkle trees
 	- patricia trees
 	- modified merkle-patricia
@@ -19,16 +19,27 @@
 	- btc vs eth
 	- smart contracts in general
 	- evm
-	x Scalability
-	x Economics of Smart Contracts
-- Hyperledger 
-	-
-- Quorum
-	-
-- ChorChain integration  
+	- Scalability
+	- Economics of Smart Contracts
+	- Security of Smart contracts
+- x Hyperledger  
+	- The foundation and the hp ecosystem 
+	- Hyperledger fabric
+	- Hyperledger sawtooth
+	- Why we used it 
+	- Hyperledger delve
+- x Quorum
+	- What problem does it solve
+	- The architecure and the tech behind it (mention alternatives as well)
+	- Why was sawtooth not fit for us
 
+- x ChorChain integration  
+	- on BPMN
+	- on ChorChain
+	- EVM smart contracts being deployed there
 
-
+- Conclusion
+	- What were the steps involved
 
 
 
